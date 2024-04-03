@@ -3,15 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/menu.css">
+    <script src="js/js.js" type="script"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <title>finance</title>
+    <style>
+    
+      </style>
 </head>
 <body>
+   
+        <div class="menu">
+            <div class="mb-4 flex items-center text-4xl">
+                <span class="inline-flex items-center px-3 border border-r-0 rounded-l-md bg-gray-200 text-gray-500 text-5xl">
+                    $
+                </span>
+                <h2 class="ml-2 text-2xl">Expenses</h2>
+            </div>
+
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>      
+                <nav class="nav">
+                    <ul>
+                        <li><a href="">Inicio</a></li>
+                        <li><a href="">Acerca de nosotros</a></li>
+                        <li><a href="">Servicios</a></li>
+                        <li><a href="">Contacto</a></l>
+                          
+                    </ul>
+                </nav>
+               
+        </div>
+
+        <div class="container mx-auto px-4 py-8">
+            <div class="px-8 py-8">
+                <h3 class="text-center">Movimientos</h3>
+            </div>
+            
+            <div class="flex justify-center items-center">
+                <div class="text-center">
+                    <h4>Gastos</h4>
+                    <p class="text-4xl py-4">$1000</p>
+                </div>
+            </div>
+        </div>
+
+       
+
+        <div class="overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-2xl text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-2xl text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 rounded-s-lg">
+                            Producto
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Precio
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- Aquí se cargarán los datos -->
+                </tbody>
+                <tfoot>
+                    <tr class="bg-white">
+                        <td colspan="2" class="py-8"></td>
+                    </tr>
+                    <tr class="bg-white">
+                        <td colspan="2" class="py-8"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="py-8"></td>
+                    </tr>
+                    <!-- Agrega más filas de pie de página si es necesario -->
+                </tfoot>
+            </table>
+        </div>
+        <footer></footer>
+
+     
     
-<div>
-    <h2>Test</h2>
-</div>
-<div>
+
+            
+            <div class="fixed bottom-0 left-0 w-full flex justify-center items-center px-6 py-6">
+                <div class="bg-gray-200 p-4 rounded-lg">
+                <button id="openModalBtn" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded flex items-center">
+                    <span>Agraga Gastos</span>
+                    <i class="fas fa-plus ml-2"></i>
+                </button>
+                </div>
+            </div>
+
+            <div id="myModal" class="modal hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+                <div class="modal-content bg-white p-6 rounded-lg w-5/6 text-1x4 relative"> <!-- Ajustar el ancho aquí -->
+                    <h1 class="py-4 px-2 text-xl">Enviar datos de gastos</h1>
+                    
+                    <form id="myForm" class="">
+                        <div class="mb-4 text-xl">
+                            <label for="expense" class="block text-gray-700 text-2xl font-bold mb-2 text-center py-4 px-2">Seleccione su gasto</label>
+                            <select id="expense" name="expense" class="modal__select border rounded-md px-3 py-2 w-full">
+                                <option disabled selected>Seleccione un gasto</option>
+                                <option value="comida" data-icon="fas fa-utensils">Comida <span></span></option>
+                                <option value="transporte" data-icon="fas fa-bus">Transporte</option>
+                                <option value="cafe" data-icon="fas fa-coffee">Café</option>
+                                <option value="casa" data-icon="fas fa-home">Casa</option>
+                                <option value="entretenimiento" data-icon="fas fa-gamepad">Entretenimiento</option>
+                            </select>
+                        </div>
+                        <div class="mb-4 text-xl">
+                            <input type="text" id="observacion" name="observacion" class="border rounded-md px-3 py-2 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Observacion">
+                        </div>
+                        <div class="mb-4 flex text-4xl">
+                            <span class="inline-flex items-center px-3 border border-r-0 rounded-l-md bg-gray-200 text-gray-500 text-sm">
+                                $
+                            </span>
+                            <input type="text" id="precio" name="precio" class="text-2x4 border-l-0 rounded-r-md px-3 py-2 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center" placeholder="0" onkeypress="return event.charCode >= 48 && event.charCode <= 57" style="font-size: 1.5rem;">
+                        </div>
+                        <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                            <button type="button" id="enviarBtn" class="inline-flex w-full justify-center rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black-500 sm:ml-3 sm:w-auto text-xl">Enviar</button>
+                            <button type="button" id="cerrarBtn" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto text-xl">Cerrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
     
-</div>
+
 </body>
+<script src="js/js.js"></script>
+
 </html>
