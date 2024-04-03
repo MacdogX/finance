@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         default:
                             icono.classList.add('fa-question');
                     }
+                    
                     const spanIcono = document.createElement('span');
                     spanIcono.classList.add('mr-2');
                     spanIcono.appendChild(icono);
